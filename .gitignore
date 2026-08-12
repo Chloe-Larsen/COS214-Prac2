@@ -1,0 +1,7 @@
+.vscode
+
+# build artifacts
+program
+*.o
+*.d
+submission.zip
