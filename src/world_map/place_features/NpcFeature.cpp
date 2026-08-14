@@ -1,0 +1,1 @@
+#include "../../include/world_map/place_features/NpcFeature.h"
