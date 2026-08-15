@@ -2,6 +2,9 @@
 #define OCEAN_BUILDER_H
 
 #include "WorldBuilder.h"
+#include "OceanNPC.h"
+#include "OceanObstacle.h"
+#include "OceanTerrain.h"
 
 class OceanBuilder : WorldBuilder
 {
