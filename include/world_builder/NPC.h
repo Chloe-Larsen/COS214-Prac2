@@ -3,7 +3,11 @@
 
 class NPC
 {
-    // TODO
+private:
+    std::string name;
+    bool sellsFlightItem;
+public: 
+    virtual ~NPC();
 };
 
 #endif
