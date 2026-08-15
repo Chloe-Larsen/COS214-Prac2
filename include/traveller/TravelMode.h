@@ -8,6 +8,9 @@
 
 #include "../world_map/Place.h"
 #include "Traveller.h"
+#include "../world_builder/CityTerrain.h"
+#include "../world_builder/DesertTerrain.h"
+#include "../world_builder/OceanTerrain.h"
 
 class TravelMode
 {

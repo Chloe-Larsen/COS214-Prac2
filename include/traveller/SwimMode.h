@@ -2,6 +2,9 @@
 #define SWIM_MODE_H
 
 #include "TravelMode.h"
+#include "../world_builder/CityTerrain.h"
+#include "../world_builder/DesertTerrain.h"
+#include "../world_builder/OceanTerrain.h"
 
 class SwimMode: public TravelMode{
 public:
