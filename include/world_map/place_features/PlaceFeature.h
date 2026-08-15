@@ -5,7 +5,7 @@
 
 class PlaceFeature : public Place
 {
-private:
+protected:
     Place *place;
 
 public:
