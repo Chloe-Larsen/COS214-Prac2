@@ -3,7 +3,10 @@
 
 class Obstacle
 {
-    
+private:
+    std::string name;
+public:
+    virtual ~Obstacle();
 };
 
 #endif
