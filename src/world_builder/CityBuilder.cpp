@@ -2,12 +2,15 @@
 
 Terrain *CityBuilder::makeTerrain()
 {
+    return new CityTerrain();
 }
 
 NPC *CityBuilder::makeNPC()
 {
+    return new CityNPC();
 }
 
 Obstacle *CityBuilder::makeObstacle()
 {
+    return new CityObstacle();
 }

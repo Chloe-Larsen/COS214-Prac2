@@ -2,6 +2,9 @@
 #define DESERT_BUILDER_H
 
 #include "WorldBuilder.h"
+#include "DesertNPC.h"
+#include "DesertObstacle.h"
+#include "DesertTerrain.h"
 
 class DesertBuilder : WorldBuilder
 {
