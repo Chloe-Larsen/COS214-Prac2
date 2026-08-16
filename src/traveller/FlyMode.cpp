@@ -1,6 +1,8 @@
 #include "../../include/traveller/FlyMode.h"
 #include "../../include/traveller/Traveller.h"
 
+FlyMode::FlyMode() : TravelMode("flying") {}
+
 int FlyMode::handle(Terrain *terrain, Traveller *traveller)
 {
     if (traveller->getFlightItems() <= 0)

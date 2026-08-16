@@ -1,5 +1,7 @@
 #include "../../include/traveller/WalkMode.h"
 
+WalkMode::WalkMode() : TravelMode("walking") {}
+
 int WalkMode::handle(Terrain *terrain, Traveller *traveller)
 {
     if (dynamic_cast<OceanTerrain *>(terrain))

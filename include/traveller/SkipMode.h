@@ -6,6 +6,7 @@
 class SkipMode : public TravelMode
 {
 public:
+    SkipMode();
     int handle(Terrain *terrain, Traveller *traveller) override;
 };
 

@@ -15,8 +15,13 @@ class Traveller;
 
 class TravelMode
 {
+private:
+    std::string name;
+
 public:
+    TravelMode(std::string name);
     virtual int handle(Terrain *terrain, Traveller *traveller) = 0;
+    virtual std::string getName() final;
     virtual ~TravelMode();
 };
 

@@ -1,5 +1,7 @@
 #include "../../include/traveller/SwimMode.h"
 
+SwimMode::SwimMode() : TravelMode("swimming") {}
+
 int SwimMode::handle(Terrain *terrain, Traveller *traveller)
 {
     if (dynamic_cast<OceanTerrain *>(terrain))

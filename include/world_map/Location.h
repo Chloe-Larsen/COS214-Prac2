@@ -12,7 +12,8 @@ private:
 
 public:
     Location(std::string name);
-    Place *getParentNode(bool first = true) override;
+    std::string getName();
+    Region *getParentNode(bool first = true) override;
     Place *getCurrentNode() override;
     Terrain *getTerrain() override;
     // TODO: Map<String, Function(): void> getInteractions()

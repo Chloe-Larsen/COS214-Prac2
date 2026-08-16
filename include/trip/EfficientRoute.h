@@ -6,6 +6,7 @@
 class EfficientRoute : public Route
 {
 public:
+    EfficientRoute();
     std::vector<Place *> pickPlaces(Location *current, Location *destination) override;
 };
 

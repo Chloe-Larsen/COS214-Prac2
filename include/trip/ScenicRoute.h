@@ -6,6 +6,7 @@
 class ScenicRoute : public Route
 {
 public:
+    ScenicRoute();
     std::vector<Place *> pickPlaces(Location *current, Location *destination) override;
 };
 

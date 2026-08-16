@@ -6,6 +6,7 @@
 class FlyMode : public TravelMode
 {
 public:
+    FlyMode();
     int handle(Terrain *terrain, Traveller *traveller) override;
 };
 

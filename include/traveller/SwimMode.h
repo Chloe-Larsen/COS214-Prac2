@@ -6,6 +6,7 @@
 class SwimMode : public TravelMode
 {
 public:
+    SwimMode();
     int handle(Terrain *terrain, Traveller *traveller) override;
 };
 

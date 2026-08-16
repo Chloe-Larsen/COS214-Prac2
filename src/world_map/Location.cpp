@@ -6,7 +6,12 @@ Location::Location(std::string name)
     this->name = name;
 }
 
-Place *Location::getParentNode(bool)
+std::string Location::getName()
+{
+    return name;
+}
+
+Region *Location::getParentNode(bool)
 {
     return parent->getParentNode(false);
 }
