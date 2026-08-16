@@ -6,7 +6,7 @@ Place::~Place()
     // empty
 }
 
-Place *Place::getHandle()
+Place *Place::getDecorated()
 {
     return dynamic_cast<PlaceFeature *>(parent) ? parent : this;
 }

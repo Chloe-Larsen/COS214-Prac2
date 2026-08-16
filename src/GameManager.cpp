@@ -139,7 +139,6 @@ void GameManager::doStepLoop()
              "Chill at current place a bit more"
              "Change travel mode",
              "Interact with environment"});
-        std::cout << "User gave: " << selectedOption << std::endl;
 
         switch (selectedOption)
         {
@@ -180,7 +179,7 @@ void GameManager::doInteractingLoop()
         std::vector<std::string> options = {"Stop searching (go back)"};
         std::vector<PlaceFeature *> placeFeatures = {};
 
-        for (const auto &entry : currentPlace->getInteractions())
+        for (const auto &entry : currentPlace->getDecorated()->getInteractions())
         {
             options.push_back(entry.first);
             placeFeatures.push_back(entry.second);

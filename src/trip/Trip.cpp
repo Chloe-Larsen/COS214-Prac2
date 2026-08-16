@@ -14,7 +14,7 @@ void Trip::setRoute(Route *route)
 
 Trip::~Trip()
 {
-    if(route != nullptr)
+    if (route != nullptr)
         delete route;
 
     for (Place *place : places)
