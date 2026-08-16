@@ -5,6 +5,9 @@
 #include "../include/trip/IndecisiveRoute.h"
 #include "../include/trip/ScenicRoute.h"
 #include "../include/traveller/WalkMode.h"
+#include "../include/traveller/SkipMode.h"
+#include "../include/traveller/SwimMode.h"
+#include "../include/traveller/FlyMode.h"
 
 #include <iostream>
 
@@ -130,9 +133,8 @@ void GameManager::doStepLoop()
         }
 
         int selectedOption = showMenu(
-            {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName() + " ") + "in the " + currentRegion->getName() + " region (" + currentPlace->getTerrain()->getName() + ")",
-             "Travelling from " +
-                 startLocation->getName() + " to " + destinationLocation->getName() + " via the " + trip->getRoute()->getName() + " route",
+            {"Travelling from " + startLocation->getName() + " to " + destinationLocation->getName() + " via the " + trip->getRoute()->getName() + " route",
+             "You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName() + " ") + "in the " + currentRegion->getName() + " region (" + currentPlace->getTerrain()->getName() + ")",
              "Currently travelling by " + traveller->getTravelMode()->getName(),
              "| Coins: " + std::to_string(traveller->getCoins()) + " | Feathers: " + std::to_string(traveller->getFlightItems()) + " |",
              "What is your next move?"},
@@ -143,6 +145,7 @@ void GameManager::doStepLoop()
         switch (selectedOption)
         {
         case 1:
+        {
             // check if already at location
             if (currentLocation == destinationLocation)
             {
@@ -153,9 +156,34 @@ void GameManager::doStepLoop()
 
             traveller->move(trip, currentPlace->getTerrain());
             break;
+        }
         case 2:
-            // TODO
+        {
+            int travelModeI = showMenu(
+                {"Select your desired mode of travel:"},
+                {"Walking", "Skipping", "Swimming", "Flying"});
+
+            TravelMode *travelMode;
+
+            switch (travelModeI)
+            {
+            case 1:
+                travelMode = new WalkMode();
+                break;
+            case 2:
+                travelMode = new SkipMode();
+                break;
+            case 3:
+                travelMode = new SwimMode();
+                break;
+            case 4:
+                travelMode = new FlyMode();
+                break;
+            }
+
+            traveller->setTravelMode(travelMode);
             break;
+        }
         case 3:
             doInteractingLoop();
             break;

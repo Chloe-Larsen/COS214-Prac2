@@ -8,7 +8,7 @@ int showMenu(std::vector<std::string> text, std::vector<std::string> options)
 
     while (true)
     {
-        std::string toShow = "\n========================================\n";
+        std::string toShow = "";
 
         if (!firstAttempt)
             toShow += "\nThat isn't an option! Try again. Type in 1-" + std::to_string(options.size()) + "\n";
