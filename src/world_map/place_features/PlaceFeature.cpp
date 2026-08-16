@@ -8,7 +8,7 @@ PlaceFeature::PlaceFeature(Place *place)
     place->parent = this;
 }
 
-Place *PlaceFeature::getParentNode(bool)
+Region *PlaceFeature::getParentNode(bool)
 {
     return parent->getParentNode(false);
 }
