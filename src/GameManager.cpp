@@ -73,10 +73,18 @@ void GameManager::doDestinationLoop()
         for (Location *location : locations)
             options.push_back(location->getName());
 
+        options.push_back("Exit Game");
         int selectedLocationI = showMenu(
             {"You are currently at " + startLocation->getName() + ".",
              "Select where you want to go next:"},
             options);
+
+        if (selectedLocationI == options.size())
+        {
+            std::cout << "Thank you for playing! Goodbye!" << std::endl;
+            exit(0);
+        }
+        
         destinationLocation = locations[selectedLocationI - 1];
 
         /* Select Route */
