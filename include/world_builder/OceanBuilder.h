@@ -10,7 +10,7 @@ class OceanBuilder : WorldBuilder
 {
 public:
     Terrain *makeTerrain() override;
-    NPC *makeNPC() override;
+    NPC *makeNPC(std::string name) override;
     Obstacle *makeObstacle() override;    
 };
 

@@ -7,6 +7,7 @@ class OceanNPC : public NPC
 {
 public:
     OceanNPC(std::string name);
+    bool sellsFlightItem();
 };
 
 #endif

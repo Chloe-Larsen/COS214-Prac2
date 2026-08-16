@@ -5,9 +5,9 @@ Terrain *CityBuilder::makeTerrain()
     return new CityTerrain();
 }
 
-NPC *CityBuilder::makeNPC()
+NPC *CityBuilder::makeNPC(std::string name)
 {
-    return new CityNPC();
+    return new CityNPC(name);
 }
 
 Obstacle *CityBuilder::makeObstacle()

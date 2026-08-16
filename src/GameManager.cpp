@@ -1,4 +1,5 @@
 #include "../include/GameManager.h"
+#include "../include/utils.h"
 #include "../include/world_map/Region.h"
 #include "../include/trip/EfficientRoute.h"
 #include "../include/trip/IndecisiveRoute.h"
@@ -160,75 +161,43 @@ void GameManager::doStepLoop()
 
 void GameManager::doInteractingLoop()
 {
-    // while (true)
-    // {
-    //     Place *currentPlace = trip->getPlaces()[trip->getCurrentPlaceIndex()]->getCurrentNode();
-    //     Region *currentRegion = nullptr;
-    //     Location *currentLocation = nullptr;
-
-    //     if (Location *v = dynamic_cast<Location *>(currentPlace))
-    //     {
-    //         currentLocation = v;
-    //         currentRegion = v->getParentNode(true);
-    //     }
-    //     else if (Region *v = dynamic_cast<Region *>(currentPlace))
-    //     {
-    //         currentRegion = v;
-    //     }
-
-    //     std::vector<std::string> options = {"Stop searching (go back)"};
-    //     int selectedOption = showMenu(
-    //         {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName()) + " in the " + currentRegion->getName() + " region",
-    //          "| Coins: " + std::to_string(traveller->getCoins()) + " | Feathers: " + std::to_string(traveller->getFlightItems()) + " |",
-    //          "You see a few things around you. What do you do:"},
-    //         options);
-    //     std::cout << "User gave: " << selectedOption << std::endl;
-
-    //     if (selectedOption == 1)
-    //         break; // go back
-    // }
-}
-
-int GameManager::showMenu(std::vector<std::string> text, std::vector<std::string> options)
-{
-    bool firstAttempt = true;
-
     while (true)
     {
-        std::string toShow = "\n========================================\n";
+        Place *currentPlace = trip->getPlaces()[trip->getCurrentPlaceIndex()]->getCurrentNode();
+        Region *currentRegion = nullptr;
+        Location *currentLocation = nullptr;
 
-        if (!firstAttempt)
-            toShow += "\nThat isn't an option! Try again. Type in 1-" + std::to_string(options.size()) + "\n";
-
-        for (std::size_t i = 0; i < text.size(); i++)
-            toShow += "\n" + text[i];
-
-        toShow += '\n';
-
-        for (std::size_t i = 0; i < options.size(); i++)
-            toShow += "\n" + std::to_string(i + 1) + ") " + options[i];
-
-        std::string input;
-
-        std::cout << toShow << '\n'
-                  << std::endl;
-        std::cin >> input;
-
-        int selected = -1;
-
-        try
+        if (Location *v = dynamic_cast<Location *>(currentPlace))
         {
-            selected = std::stoi(input);
+            currentLocation = v;
+            currentRegion = v->getParentNode(true);
         }
-        catch (const std::exception &e)
+        else if (Region *v = dynamic_cast<Region *>(currentPlace))
         {
-            // empty
+            currentRegion = v;
         }
 
-        if (selected >= 1 && selected <= static_cast<int>(options.size()))
-            return selected;
+        std::vector<std::string> options = {"Stop searching (go back)"};
+        std::vector<PlaceFeature *> placeFeatures = {};
 
-        firstAttempt = false;
+        for (const auto &entry : currentPlace->getInteractions())
+        {
+            options.push_back(entry.first);
+            placeFeatures.push_back(entry.second);
+        }
+
+        int selectedOption = showMenu(
+            {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName()) + " in the " + currentRegion->getName() + " region",
+             "| Coins: " + std::to_string(traveller->getCoins()) + " | Feathers: " + std::to_string(traveller->getFlightItems()) + " |",
+             "You see a few things around you. What do you do:"},
+            options);
+        std::cout << "User gave: " << selectedOption << std::endl;
+
+        if (selectedOption == 1)
+            break; // go back
+
+        // let feature handle interaction
+        placeFeatures[selectedOption - 1]->handleInteraction(traveller);
     }
 }
 

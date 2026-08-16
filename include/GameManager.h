@@ -12,8 +12,8 @@ private:
     Traveller *traveller;
     Trip *trip;
     Place *map;
-    Location* startLocation;
-    Location* destinationLocation;
+    Location *startLocation;
+    Location *destinationLocation;
 
 public:
     void start();
@@ -24,7 +24,6 @@ private:
     void doDestinationLoop();
     void doStepLoop();
     void doInteractingLoop();
-    int showMenu(std::vector<std::string> text, std::vector<std::string> options);
     std::vector<Location *> getLocations(Place *place);
 };
 

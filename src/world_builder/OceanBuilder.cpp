@@ -5,9 +5,9 @@ Terrain *OceanBuilder::makeTerrain()
     return new OceanTerrain();
 }
 
-NPC *OceanBuilder::makeNPC()
+NPC *OceanBuilder::makeNPC(std::string name)
 {
-    return new OceanNPC();
+    return new OceanNPC(name);
 }
 
 Obstacle *OceanBuilder::makeObstacle()

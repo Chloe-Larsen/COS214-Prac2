@@ -5,9 +5,9 @@ Terrain *DesertBuilder::makeTerrain()
     return new DesertTerrain();
 }
 
-NPC *DesertBuilder::makeNPC()
+NPC *DesertBuilder::makeNPC(std::string name)
 {
-    return new DesertNPC();
+    return new DesertNPC(name);
 }
 
 Obstacle *DesertBuilder::makeObstacle()

@@ -7,6 +7,7 @@
 #include "../world_builder/Obstacle.h"
 #include "../world_builder/Terrain.h"
 
+class PlaceFeature;
 class Region;
 
 class Place

@@ -7,6 +7,7 @@ class DesertNPC : public NPC
 {
 public:
     DesertNPC(std::string name);
+    bool sellsFlightItem();
 };
 
 #endif

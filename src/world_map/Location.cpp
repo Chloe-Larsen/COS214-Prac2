@@ -38,7 +38,7 @@ Terrain *Location::getTerrain()
     return region->getTerrain();
 }
 
-std::map<std::string, VoidFunc> Location::getInteractions()
+std::map<std::string, PlaceFeature *> Location::getInteractions()
 {
     return {};
 }

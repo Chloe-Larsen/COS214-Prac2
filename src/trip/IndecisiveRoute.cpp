@@ -1,4 +1,5 @@
 #include "../../include/trip/IndecisiveRoute.h"
+#include "../../include/world_map/Region.h"
 
 IndecisiveRoute::IndecisiveRoute() : Route("indecisive") {}
 

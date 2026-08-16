@@ -1,4 +1,5 @@
 #include "../../include/trip/ScenicRoute.h"
+#include "../../include/world_map/Region.h"
 
 ScenicRoute::ScenicRoute() : Route("indecisive") {}
 
