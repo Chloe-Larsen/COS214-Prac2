@@ -8,7 +8,12 @@
 
 class Terrain
 {
+private:
+    std::string name;
+
 public:
+    Terrain(std::string name);
+    virtual std::string getName() final;
     virtual ~Terrain();
 };
 

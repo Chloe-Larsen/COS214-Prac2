@@ -61,6 +61,7 @@ void GameManager::doDestinationLoop()
         /* Select Destination Location */
 
         std::vector<Location *> locations = getLocations(map);
+
         std::vector<std::string> options;
 
         for (Location *location : locations)
@@ -95,15 +96,10 @@ void GameManager::doDestinationLoop()
 
         /* Set Up Nested Game Loop */
 
-        std::cout << "a" << std::endl;
         traveller->setTravelMode(new WalkMode());
-        std::cout << "b" << std::endl;
         trip->setRoute(route);
-        std::cout << "c" << std::endl;
         trip->plan(startLocation, destinationLocation);
-        std::cout << "d" << std::endl;
         trip->setCurrentPlaceIndex(0);
-        std::cout << "e" << std::endl;
 
         if (trip->getPlaces().size() <= 1)
         {
@@ -126,7 +122,7 @@ void GameManager::doStepLoop()
         if (Location *v = dynamic_cast<Location *>(currentPlace))
         {
             currentLocation = v;
-            currentRegion = v->getParentNode(true);
+            currentRegion = v->getParentNode();
         }
         else if (Region *v = dynamic_cast<Region *>(currentPlace))
         {
@@ -134,29 +130,33 @@ void GameManager::doStepLoop()
         }
 
         int selectedOption = showMenu(
-            {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName()) + " in the " + currentRegion->getName() + " region",
+            {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName() + " ") + "in the " + currentRegion->getName() + " region (" + currentPlace->getTerrain()->getName() + ")",
              "Travelling from " +
-                 currentLocation->getName() + " to " + destinationLocation->getName() + " via the " + trip->getRoute()->getName() + " route",
+                 startLocation->getName() + " to " + destinationLocation->getName() + " via the " + trip->getRoute()->getName() + " route",
+             "Currently travelling by " + traveller->getTravelMode()->getName(),
              "| Coins: " + std::to_string(traveller->getCoins()) + " | Feathers: " + std::to_string(traveller->getFlightItems()) + " |",
-             "Currently " + traveller->getTravelMode()->getName() + " to travel.",
              "What is your next move?"},
             {"Move on",
-             "Chill at current place a bit more"
              "Change travel mode",
              "Interact with environment"});
 
         switch (selectedOption)
         {
         case 1:
-            // TODO
+            // check if already at location
+            if (currentLocation == destinationLocation)
+            {
+                startLocation = destinationLocation;
+                destinationLocation = nullptr;
+                return; // go back to outer game loop
+            }
+
+            traveller->move(trip, currentPlace->getTerrain());
             break;
         case 2:
-            std::cout << "Nice. Hope you enjoyed a little more rest." << std::endl;
-            break;
-        case 3:
             // TODO
             break;
-        case 4:
+        case 3:
             doInteractingLoop();
             break;
         }
@@ -191,7 +191,7 @@ void GameManager::doInteractingLoop()
         }
 
         int selectedOption = showMenu(
-            {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName()) + " in the " + currentRegion->getName() + " region",
+            {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName() + " ") + "in the " + currentRegion->getName() + " region (" + currentPlace->getTerrain()->getName() + ")",
              "| Coins: " + std::to_string(traveller->getCoins()) + " | Feathers: " + std::to_string(traveller->getFlightItems()) + " |",
              "You see a few things around you. What do you do:"},
             options);
@@ -218,7 +218,8 @@ std::vector<Location *> GameManager::getLocations(Place *place)
     }
     else if (Location *location = dynamic_cast<Location *>(place))
     {
-        locations.push_back(location);
+        if (location != startLocation->getCurrentNode())
+            locations.push_back(location);
     }
 
     return locations;

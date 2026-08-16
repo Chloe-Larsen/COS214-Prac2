@@ -2,6 +2,7 @@
 
 void Traveller::move(Trip *trip, Terrain *terrain)
 {
+    std::cout << "moving" << std::endl;
     int amount = travelMode->handle(terrain, this);
     int currentIndex = trip->getCurrentPlaceIndex();
     int size = (trip->getPlaces()).size();

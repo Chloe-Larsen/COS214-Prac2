@@ -5,6 +5,8 @@
 
 class CityTerrain : public Terrain
 {
+public:
+    CityTerrain();
 };
 
 #endif

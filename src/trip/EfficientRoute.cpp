@@ -1,7 +1,7 @@
 #include "../../include/trip/EfficientRoute.h"
 #include "../../include/world_map/Region.h"
 
-EfficientRoute::EfficientRoute() : Route("efficient") {}
+EfficientRoute::EfficientRoute() : Route("Efficient") {}
 
 std::vector<Place *> EfficientRoute::pickPlaces(Location *current, Location *destination)
 {

@@ -5,6 +5,8 @@
 
 class OceanTerrain : public Terrain
 {
+public:
+    OceanTerrain();
 };
 
 #endif

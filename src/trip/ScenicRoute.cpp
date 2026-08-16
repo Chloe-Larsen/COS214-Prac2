@@ -1,7 +1,7 @@
 #include "../../include/trip/ScenicRoute.h"
 #include "../../include/world_map/Region.h"
 
-ScenicRoute::ScenicRoute() : Route("indecisive") {}
+ScenicRoute::ScenicRoute() : Route("Scenic") {}
 
 std::vector<Place *> ScenicRoute::pickPlaces(Location *current, Location *destination)
 {

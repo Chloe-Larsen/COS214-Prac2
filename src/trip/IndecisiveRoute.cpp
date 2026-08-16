@@ -1,7 +1,7 @@
 #include "../../include/trip/IndecisiveRoute.h"
 #include "../../include/world_map/Region.h"
 
-IndecisiveRoute::IndecisiveRoute() : Route("indecisive") {}
+IndecisiveRoute::IndecisiveRoute() : Route("Indecisive") {}
 
 std::vector<Place *> IndecisiveRoute::pickPlaces(Location *current, Location *destination)
 {
