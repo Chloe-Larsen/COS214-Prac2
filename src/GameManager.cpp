@@ -21,25 +21,25 @@ GameManager::GameManager()
 
     Region *root = new Region("World", new DesertTerrain());
     map = root;
-    Location *tradeCenterLocation = new Location("World Trading Center");
-    root->addPlace(tradeCenterLocation);
+    Location *worldTradeCenterLocation = new Location("World Trading Center");
+    root->addPlace(worldTradeCenterLocation);
 
     Region *desertRegion = new Region("Vast Desert", new DesertTerrain());
     root->addPlace(desertRegion);
     desertRegion->addPlace(new TreasureFeature(300, new Location("Oasis")));
 
     Region *cityRegion = new Region("Modern City", new CityTerrain());
-    root->addPlace(cityRegion);
+    desertRegion->addPlace(cityRegion);
     cityRegion->addPlace(new Location("Mall"));
     cityRegion->addPlace(new Location("Park"));
 
     Region *waterRegion = new Region("Small Lake", new OceanTerrain());
-    root->addPlace(waterRegion);
+    cityRegion->addPlace(waterRegion);
     waterRegion->addPlace(new Location("Warm Water"));
     waterRegion->addPlace(new Location("Cold Water"));
     waterRegion->addPlace(new Location("Frozen Water"));
 
-    startLocation = tradeCenterLocation;
+    startLocation = worldTradeCenterLocation;
 }
 
 GameManager::~GameManager()
