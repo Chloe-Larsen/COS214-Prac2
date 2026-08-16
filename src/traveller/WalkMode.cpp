@@ -2,13 +2,13 @@
 
 int WalkMode::handle(Terrain *terrain, Traveller *traveller)
 {
-    if (OceanTerrain *c = dynamic_cast<OceanTerrain *>(terrain))
+    if (dynamic_cast<OceanTerrain *>(terrain))
     {
         std::cout << "You cannot walk in the ocean terrain. Please select a different mode." << std::endl;
         return 0;
     }
     std::string terrainString = "desert";
-    if (CityTerrain *c = dynamic_cast<CityTerrain *>(terrain))
+    if (dynamic_cast<CityTerrain *>(terrain))
     {
         terrainString = "city";
     }

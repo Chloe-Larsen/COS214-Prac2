@@ -2,4 +2,5 @@
 
 std::vector<Place *> EfficientRoute::pickPlaces(Location *current, Location *destination)
 {
+    return {}; // TODO
 }

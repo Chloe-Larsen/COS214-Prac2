@@ -3,10 +3,10 @@
 
 #include "TravelMode.h"
 
-class SkipMode : public TravelMode{
+class SkipMode : public TravelMode
+{
 public:
-    int handle(Terrain *terrain, Traveller* traveller) override;
+    int handle(Terrain *terrain, Traveller *traveller) override;
 };
-
 
 #endif

@@ -4,19 +4,19 @@
 
 GameManager::GameManager()
 {
-    // this->traveller = new Traveller();
+    this->traveller = new Traveller();
 }
 
 GameManager::~GameManager()
 {
-    // delete traveller;
-    // traveller = nullptr;
+    delete traveller;
+    traveller = nullptr;
 
-    // if (trip != nullptr)
-    // {
-    //     delete trip;
-    //     trip = nullptr;
-    // }
+    if (trip != nullptr)
+    {
+        delete trip;
+        trip = nullptr;
+    }
 }
 
 void GameManager::start()

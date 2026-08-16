@@ -2,4 +2,5 @@
 
 std::vector<Place *> ScenicRoute::pickPlaces(Location *current, Location *destination)
 {
+    return {}; // TODO
 }

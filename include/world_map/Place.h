@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "Region.h"
 #include "../world_builder/Obstacle.h"
+#include "../world_builder/Terrain.h"
 
 class Place
 {

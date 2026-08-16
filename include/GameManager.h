@@ -4,13 +4,13 @@
 #include <string>
 #include <vector>
 
-// #include "./traveller/Traveller.h"
+#include "./traveller/Traveller.h"
 
 class GameManager
 {
 private:
-    // Traveller *traveller;
-    // Trip *trip;
+    Traveller *traveller;
+    Trip *trip;
 
 public:
     void start();

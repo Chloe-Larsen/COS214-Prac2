@@ -19,17 +19,17 @@ private:
 
 public:
     void move(Trip *trip, Terrain *terrain);
-    void setTravelMode(TravelMode * travelMode);
+    void setTravelMode(TravelMode *travelMode);
     ~Traveller();
 
-    //getter and setters
+    // getter and setters
     int getCoins();
     void setCoins(int coins);
 
     int getFlightItems();
     void setFlightItems(int flightItems);
 
-    TravelMode* getTravelMode();
+    TravelMode *getTravelMode();
 };
 
 #endif

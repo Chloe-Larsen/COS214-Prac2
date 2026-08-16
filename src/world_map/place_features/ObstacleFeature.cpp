@@ -1,4 +1,4 @@
-#include "../../include/world_map/place_features/ObstacleFeature.h"
+#include "../../../include/world_map/place_features/ObstacleFeature.h"
 
 ObstacleFeature::ObstacleFeature(Place *place, Obstacle *obstacle) : PlaceFeature(place)
 {

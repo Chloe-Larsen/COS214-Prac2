@@ -2,4 +2,5 @@
 
 std::vector<Place *> IndecisiveRoute::pickPlaces(Location *current, Location *destination)
 {
+    return {}; // TODO
 }

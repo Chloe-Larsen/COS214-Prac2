@@ -1,5 +1,6 @@
 #include "../../include/trip/Route.h"
 
-Route::~Route(){
-
+Route::~Route()
+{
+    // empty
 }
