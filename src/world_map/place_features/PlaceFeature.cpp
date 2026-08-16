@@ -10,7 +10,7 @@ PlaceFeature::PlaceFeature(Place *place)
 
 Region *PlaceFeature::getParentNode(bool)
 {
-    return parent->getParentNode(false);
+    return parent == nullptr ? nullptr : parent->getParentNode(false);
 }
 
 Place *PlaceFeature::getCurrentNode()

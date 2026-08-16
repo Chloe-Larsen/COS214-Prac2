@@ -4,5 +4,5 @@ OceanNPC::OceanNPC(std::string name) : NPC(name) {}
 
 bool OceanNPC::sellsFlightItem()
 {
-    return true;
+    return false;
 }

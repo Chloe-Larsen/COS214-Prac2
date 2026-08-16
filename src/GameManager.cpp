@@ -4,6 +4,9 @@
 #include "../include/world_map/place_features/NpcFeature.h"
 #include "../include/world_map/place_features/ObstacleFeature.h"
 #include "../include/world_map/place_features/TreasureFeature.h"
+#include "../include/world_builder/CityNPC.h"
+#include "../include/world_builder/OceanNPC.h"
+#include "../include/world_builder/DesertNPC.h"
 #include "../include/trip/EfficientRoute.h"
 #include "../include/trip/IndecisiveRoute.h"
 #include "../include/trip/ScenicRoute.h"
@@ -17,19 +20,21 @@
 GameManager::GameManager()
 {
     traveller = new Traveller();
+    traveller->setTravelMode(new WalkMode());
+
     trip = new Trip();
 
     Region *root = new Region("World", new DesertTerrain());
-    map = root;
+    map = new TreasureFeature(100, root);
     Location *worldTradeCenterLocation = new Location("World Trading Center");
     root->addPlace(worldTradeCenterLocation);
 
     Region *desertRegion = new Region("Vast Desert", new DesertTerrain());
     root->addPlace(desertRegion);
-    desertRegion->addPlace(new TreasureFeature(300, new Location("Oasis")));
+    desertRegion->addPlace(new TreasureFeature(300, new NpcFeature(new DesertNPC("Jayden"), new Location("Oasis"))));
 
     Region *cityRegion = new Region("Modern City", new CityTerrain());
-    desertRegion->addPlace(cityRegion);
+    desertRegion->addPlace(new NpcFeature(new CityNPC("Sketchy Joe"), cityRegion));
     cityRegion->addPlace(new Location("Mall"));
     cityRegion->addPlace(new Location("Park"));
 
@@ -67,7 +72,6 @@ void GameManager::doDestinationLoop()
         /* Select Destination Location */
 
         std::vector<Location *> locations = getLocations(map);
-
         std::vector<std::string> options;
 
         for (Location *location : locations)
@@ -84,7 +88,7 @@ void GameManager::doDestinationLoop()
             std::cout << "Thank you for playing! Goodbye!" << std::endl;
             exit(0);
         }
-        
+
         destinationLocation = locations[selectedLocationI - 1];
 
         /* Select Route */
@@ -110,7 +114,6 @@ void GameManager::doDestinationLoop()
 
         /* Set Up Nested Game Loop */
 
-        traveller->setTravelMode(new WalkMode());
         trip->setRoute(route);
         trip->plan(startLocation, destinationLocation);
         trip->setCurrentPlaceIndex(0);
