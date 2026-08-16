@@ -26,3 +26,8 @@ ObstacleFeature::~ObstacleFeature()
 {
     delete obstacle;
 }
+
+std::string ObstacleFeature::toString()
+{
+    return "ObstacleFeature()";
+}

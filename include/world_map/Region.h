@@ -25,6 +25,7 @@ public:
     Terrain *getTerrain() override;
     std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;
+    std::string toString() override;
     virtual ~Region();
 };
 

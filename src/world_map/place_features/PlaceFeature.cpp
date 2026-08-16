@@ -15,7 +15,7 @@ Region *PlaceFeature::getParentNode(bool)
 
 Place *PlaceFeature::getCurrentNode()
 {
-    return place;
+    return place->getCurrentNode();
 }
 
 Terrain *PlaceFeature::getTerrain()

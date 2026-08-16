@@ -21,6 +21,7 @@ int FlyMode::handle(Terrain *terrain, Traveller *traveller)
         terrainString = "desert";
     }
 
+    traveller->setFlightItems(traveller->getFlightItems() - 1);
     std::cout << "You have flown 3 spaces in the " << terrainString << " terrain! \nYou have " << std::to_string(traveller->getFlightItems()) << " flight items remaining" << std::endl;
     return 3;
 }

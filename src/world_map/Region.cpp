@@ -54,3 +54,8 @@ std::vector<Obstacle *> Region::getObstacles()
 {
     return std::vector<Obstacle *>();
 }
+
+std::string Region::toString()
+{
+    return "Region(name: " + name + ")";
+}

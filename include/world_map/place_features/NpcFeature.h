@@ -14,6 +14,7 @@ public:
     void handleInteraction(Traveller *traveller) override;
     std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;
+    std::string toString() override;
     ~NpcFeature();
 };
 

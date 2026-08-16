@@ -47,3 +47,8 @@ std::vector<Obstacle *> Location::getObstacles()
 {
     return std::vector<Obstacle *>();
 }
+
+std::string Location::toString()
+{
+    return "Location(name: " + name + ")";
+}

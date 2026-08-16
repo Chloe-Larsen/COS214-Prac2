@@ -7,6 +7,9 @@
 #include "../include/world_builder/CityNPC.h"
 #include "../include/world_builder/OceanNPC.h"
 #include "../include/world_builder/DesertNPC.h"
+#include "../include/world_builder/CityObstacle.h"
+#include "../include/world_builder/OceanObstacle.h"
+#include "../include/world_builder/DesertObstacle.h"
 #include "../include/trip/EfficientRoute.h"
 #include "../include/trip/IndecisiveRoute.h"
 #include "../include/trip/ScenicRoute.h"
@@ -24,22 +27,22 @@ GameManager::GameManager()
 
     trip = new Trip();
 
-    Region *root = new Region("World", new DesertTerrain());
-    map = new TreasureFeature(100, root);
+    Region *worldRegion = new Region("World", new DesertTerrain());
+    map = new ObstacleFeature(new DesertObstacle(), worldRegion);
     Location *worldTradeCenterLocation = new Location("World Trading Center");
-    root->addPlace(worldTradeCenterLocation);
+    worldRegion->addPlace(worldTradeCenterLocation);
 
     Region *desertRegion = new Region("Vast Desert", new DesertTerrain());
-    root->addPlace(desertRegion);
+    worldRegion->addPlace(desertRegion);
     desertRegion->addPlace(new TreasureFeature(300, new NpcFeature(new DesertNPC("Jayden"), new Location("Oasis"))));
 
     Region *cityRegion = new Region("Modern City", new CityTerrain());
-    desertRegion->addPlace(new NpcFeature(new CityNPC("Sketchy Joe"), cityRegion));
+    desertRegion->addPlace(new NpcFeature(new CityNPC("Sketchy Joe"), new TreasureFeature(100, cityRegion)));
     cityRegion->addPlace(new Location("Mall"));
     cityRegion->addPlace(new Location("Park"));
 
     Region *waterRegion = new Region("Small Lake", new OceanTerrain());
-    cityRegion->addPlace(waterRegion);
+    cityRegion->addPlace(new NpcFeature(new OceanNPC("Fisherman Pete"), waterRegion));
     waterRegion->addPlace(new Location("Warm Water"));
     waterRegion->addPlace(new Location("Cold Water"));
     waterRegion->addPlace(new Location("Frozen Water"));
@@ -253,8 +256,8 @@ std::vector<Location *> GameManager::getLocations(Place *place)
 
     if (Region *region = dynamic_cast<Region *>(place))
     {
-        for (Place *place : region->getPlaces())
-            for (Location *location : getLocations(place))
+        for (Place *regionPlace : region->getPlaces())
+            for (Location *location : getLocations(regionPlace))
                 locations.push_back(location);
     }
     else if (Location *location = dynamic_cast<Location *>(place))

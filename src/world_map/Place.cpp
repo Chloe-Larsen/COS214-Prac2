@@ -8,5 +8,5 @@ Place::~Place()
 
 Place *Place::getDecorated()
 {
-    return dynamic_cast<PlaceFeature *>(parent) ? parent : this;
+    return dynamic_cast<PlaceFeature *>(parent) ? parent->getDecorated() : this;
 }
