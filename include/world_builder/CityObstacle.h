@@ -5,6 +5,8 @@
 
 class CityObstacle : public Obstacle
 {
+public:
+    CityObstacle(std::string name);
 };
 
 #endif

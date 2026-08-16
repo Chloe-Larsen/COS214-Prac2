@@ -10,7 +10,7 @@ NPC *DesertBuilder::makeNPC(std::string name)
     return new DesertNPC(name);
 }
 
-Obstacle *DesertBuilder::makeObstacle()
+Obstacle *DesertBuilder::makeObstacle(std::string name)
 {
-    return new DesertObstacle();
+    return new DesertObstacle(name);
 }

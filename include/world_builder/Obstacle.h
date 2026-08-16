@@ -7,7 +7,10 @@ class Obstacle
 {
 private:
     std::string name;
+
 public:
+    Obstacle(std::string name);
+    virtual std::string getName() final;
     virtual ~Obstacle();
 };
 

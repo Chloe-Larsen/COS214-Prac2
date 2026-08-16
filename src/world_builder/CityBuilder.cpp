@@ -10,7 +10,7 @@ NPC *CityBuilder::makeNPC(std::string name)
     return new CityNPC(name);
 }
 
-Obstacle *CityBuilder::makeObstacle()
+Obstacle *CityBuilder::makeObstacle(std::string name)
 {
-    return new CityObstacle();
+    return new CityObstacle(name);
 }

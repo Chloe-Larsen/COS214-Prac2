@@ -28,24 +28,24 @@ GameManager::GameManager()
     trip = new Trip();
 
     Region *worldRegion = new Region("World", new DesertTerrain());
-    map = new ObstacleFeature(new DesertObstacle(), worldRegion);
+    map = new ObstacleFeature(new DesertObstacle("Tumbleweed"), worldRegion);
     Location *worldTradeCenterLocation = new Location("World Trading Center");
     worldRegion->addPlace(worldTradeCenterLocation);
 
     Region *desertRegion = new Region("Vast Desert", new DesertTerrain());
     worldRegion->addPlace(desertRegion);
-    desertRegion->addPlace(new TreasureFeature(300, new NpcFeature(new DesertNPC("Jayden"), new Location("Oasis"))));
+    desertRegion->addPlace(new TreasureFeature(300, new NpcFeature(new DesertNPC("Jayden"), new ObstacleFeature(new DesertObstacle("Cactus"), new Location("Oasis")))));
 
     Region *cityRegion = new Region("Modern City", new CityTerrain());
-    desertRegion->addPlace(new NpcFeature(new CityNPC("Sketchy Joe"), new TreasureFeature(100, cityRegion)));
+    desertRegion->addPlace(new NpcFeature(new CityNPC("Sketchy Joe"), new ObstacleFeature(new CityObstacle("Traffic Light"), cityRegion)));
     cityRegion->addPlace(new Location("Mall"));
-    cityRegion->addPlace(new Location("Park"));
+    cityRegion->addPlace(new TreasureFeature(100, new Location("Park")));
 
     Region *waterRegion = new Region("Small Lake", new OceanTerrain());
     cityRegion->addPlace(new NpcFeature(new OceanNPC("Fisherman Pete"), waterRegion));
     waterRegion->addPlace(new Location("Warm Water"));
     waterRegion->addPlace(new Location("Cold Water"));
-    waterRegion->addPlace(new Location("Frozen Water"));
+    waterRegion->addPlace(new ObstacleFeature(new OceanObstacle("Icicle"), new Location("Frozen Water")));
 
     startLocation = worldTradeCenterLocation;
 }
@@ -169,6 +169,43 @@ void GameManager::doStepLoop()
                 startLocation = destinationLocation;
                 destinationLocation = nullptr;
                 return; // go back to outer game loop
+            }
+
+            // obstacles
+            std::vector<Obstacle *> obstacles = currentPlace->getDecorated()->getObstacles();
+
+            if (!obstacles.empty())
+            {
+                Obstacle *obstacle = obstacles[0];
+                int min = 5;
+                int max = 100;
+                int a = min + (rand() % (max - min + 1));
+                int b = min + (rand() % (max - min + 1));
+                int answer = a + b;
+                std::cout << "On your journey to the next area, you encounter a " << obstacle->getName() << "! For some reason, it's really good at math. To beat it, you must answer its very difficult math question:" << std::endl;
+                std::cout << obstacle->getName() << ": What is " << a << " + " << b << "?" << std::endl;
+
+                std::string input;
+                std::cin >> input;
+
+                int inputInt = -1;
+
+                try
+                {
+                    inputInt = std::stoi(input);
+                }
+                catch (const std::exception &e)
+                {
+                    // empty
+                }
+
+                if (inputInt != answer)
+                {
+                    std::cout << obstacle->getName() << ": That is incorrect. You ain't going anywhere." << std::endl;
+                    break;
+                }
+
+                std::cout << obstacle->getName() << ": Okay, you got it. Keep travelling." << std::endl;
             }
 
             traveller->move(trip, currentPlace->getTerrain());

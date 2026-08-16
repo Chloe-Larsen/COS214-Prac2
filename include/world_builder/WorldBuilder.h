@@ -15,7 +15,7 @@ class WorldBuilder
 public:
     virtual Terrain *makeTerrain() = 0;
     virtual NPC *makeNPC(std::string name) = 0;
-    virtual Obstacle *makeObstacle() = 0;
+    virtual Obstacle *makeObstacle(std::string name) = 0;
     virtual ~WorldBuilder();
 };
 
