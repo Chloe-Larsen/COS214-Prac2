@@ -30,7 +30,9 @@ std::vector<Place *> Region::getPlaces()
 
 Region *Region::getParentNode(bool first)
 {
-    return first ? parent->getParentNode(false) : this;
+    if (!first)
+        return this;
+    return parent == nullptr ? nullptr : parent->getParentNode(false);
 }
 
 Place *Region::getCurrentNode()

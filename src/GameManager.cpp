@@ -95,10 +95,15 @@ void GameManager::doDestinationLoop()
 
         /* Set Up Nested Game Loop */
 
+        std::cout << "a" << std::endl;
         traveller->setTravelMode(new WalkMode());
+        std::cout << "b" << std::endl;
         trip->setRoute(route);
+        std::cout << "c" << std::endl;
         trip->plan(startLocation, destinationLocation);
+        std::cout << "d" << std::endl;
         trip->setCurrentPlaceIndex(0);
+        std::cout << "e" << std::endl;
 
         if (trip->getPlaces().size() <= 1)
         {
