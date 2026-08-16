@@ -14,11 +14,19 @@ void Trip::setRoute(Route *route)
 
 Trip::~Trip()
 {
+    if(route != nullptr)
+        delete route;
+
+    for (Place *place : places)
+    {
+        delete place;
+    }
 }
 
 // getter and setters
 Route *Trip::getRoute()
 {
+    return route;
 }
 
 std::vector<Place *> Trip::getPlaces()
@@ -26,14 +34,12 @@ std::vector<Place *> Trip::getPlaces()
     return places;
 }
 
-void Trip::setPlaces(std::vector<Place *> places)
-{
-}
-
 int Trip::getCurrentPlaceIndex()
 {
+    return currentPlacesIndex;
 }
 
 void Trip::setCurrentPlaceIndex(int index)
 {
+    this->currentPlacesIndex = index;
 }
