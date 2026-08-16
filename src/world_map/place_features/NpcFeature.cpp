@@ -1,6 +1,6 @@
 #include "../../../include/world_map/place_features/NpcFeature.h"
 
-NpcFeature::NpcFeature(Place *place, NPC *npc) : PlaceFeature(place)
+NpcFeature::NpcFeature(NPC *npc, Place *place) : PlaceFeature(place)
 {
     this->npc = npc;
 }

@@ -11,7 +11,7 @@ int showMenu(std::vector<std::string> text, std::vector<std::string> options)
         std::string toShow = "";
 
         if (!firstAttempt)
-            toShow += "\nThat isn't an option! Try again. Type in 1-" + std::to_string(options.size()) + "\n";
+            toShow += "\nThat isn't an option! Try again. Type in a number (1-" + std::to_string(options.size()) + ")\n";
 
         for (std::size_t i = 0; i < text.size(); i++)
             toShow += "\n" + text[i];

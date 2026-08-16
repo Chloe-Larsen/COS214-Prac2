@@ -1,5 +1,5 @@
-#ifndef TREASURE_FEATURE_H
-#define TREASURE_FEATURE_H
+#ifndef NPC_FEATURE_H
+#define NPC_FEATURE_H
 
 #include "PlaceFeature.h"
 #include "../../world_builder/NPC.h"
@@ -10,7 +10,7 @@ private:
     NPC *npc;
 
 public:
-    NpcFeature(Place *place, NPC *npc);
+    NpcFeature(NPC *npc, Place *place);
     void handleInteraction(Traveller *traveller) override;
     std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;

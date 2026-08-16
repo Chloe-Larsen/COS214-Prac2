@@ -9,7 +9,7 @@ private:
     int coins;
 
 public:
-    TreasureFeature(Place *place, int coins);
+    TreasureFeature(int coins, Place *place);
     void handleInteraction(Traveller *traveller) override;
     std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;

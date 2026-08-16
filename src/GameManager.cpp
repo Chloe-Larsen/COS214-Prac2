@@ -1,6 +1,9 @@
 #include "../include/GameManager.h"
 #include "../include/utils.h"
 #include "../include/world_map/Region.h"
+#include "../include/world_map/place_features/NpcFeature.h"
+#include "../include/world_map/place_features/ObstacleFeature.h"
+#include "../include/world_map/place_features/TreasureFeature.h"
 #include "../include/trip/EfficientRoute.h"
 #include "../include/trip/IndecisiveRoute.h"
 #include "../include/trip/ScenicRoute.h"
@@ -23,7 +26,7 @@ GameManager::GameManager()
 
     Region *desertRegion = new Region("Vast Desert", new DesertTerrain());
     root->addPlace(desertRegion);
-    desertRegion->addPlace(new Location("Oasis"));
+    desertRegion->addPlace(new TreasureFeature(300, new Location("Oasis")));
 
     Region *cityRegion = new Region("Modern City", new CityTerrain());
     root->addPlace(cityRegion);
@@ -209,7 +212,7 @@ void GameManager::doInteractingLoop()
             currentRegion = v;
         }
 
-        std::vector<std::string> options = {"Stop searching (go back)"};
+        std::vector<std::string> options = {"Stop looking (go back)"};
         std::vector<PlaceFeature *> placeFeatures = {};
 
         for (const auto &entry : currentPlace->getDecorated()->getInteractions())
@@ -221,15 +224,14 @@ void GameManager::doInteractingLoop()
         int selectedOption = showMenu(
             {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName() + " ") + "in the " + currentRegion->getName() + " region (" + currentPlace->getTerrain()->getName() + ")",
              "| Coins: " + std::to_string(traveller->getCoins()) + " | Feathers: " + std::to_string(traveller->getFlightItems()) + " |",
-             "You see a few things around you. What do you do:"},
+             placeFeatures.empty() ? "You don't see much around you. You should probably stop looking." : "You see a few things around you. What do you do next?"},
             options);
-        std::cout << "User gave: " << selectedOption << std::endl;
 
         if (selectedOption == 1)
             break; // go back
 
         // let feature handle interaction
-        placeFeatures[selectedOption - 1]->handleInteraction(traveller);
+        placeFeatures[selectedOption - 2]->handleInteraction(traveller);
     }
 }
 
