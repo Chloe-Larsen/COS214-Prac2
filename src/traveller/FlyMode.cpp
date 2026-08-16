@@ -7,21 +7,11 @@ int FlyMode::handle(Terrain *terrain, Traveller *traveller)
 {
     if (traveller->getFlightItems() <= 0)
     {
-        std::cout << "You do not have any flight items. Please select a different travel mode." << std::endl;
+        std::cout << "You don't have any feathers! You need feathers to fly... Try talking to an NPC to get some." << std::endl;
         return 0;
     }
 
-    std::string terrainString = "ocean";
-    if (dynamic_cast<CityTerrain *>(terrain))
-    {
-        terrainString = "city";
-    }
-    else if (dynamic_cast<DesertTerrain *>(terrain))
-    {
-        terrainString = "desert";
-    }
-
     traveller->setFlightItems(traveller->getFlightItems() - 1);
-    std::cout << "You have flown 3 spaces in the " << terrainString << " terrain! \nYou have " << std::to_string(traveller->getFlightItems()) << " flight items remaining" << std::endl;
+    std::cout << "You flew 3 spaces in the " << terrain->getName() << "! \nYou have " << std::to_string(traveller->getFlightItems()) << " feathers left." << std::endl;
     return 3;
 }

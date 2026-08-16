@@ -12,4 +12,5 @@ std::string TravelMode::getName()
 
 TravelMode::~TravelMode()
 {
+    // empty
 }

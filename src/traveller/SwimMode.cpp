@@ -6,15 +6,15 @@ int SwimMode::handle(Terrain *terrain, Traveller *traveller)
 {
     if (dynamic_cast<OceanTerrain *>(terrain))
     {
-        std::cout << "You have swam 1 space in the ocean terrain!" << std::endl;
+        std::cout << "You swam 1 space!" << std::endl;
         return 1;
     }
-    std::string terrainString = "desert";
-    if (dynamic_cast<CityTerrain *>(terrain))
+    if (dynamic_cast<DesertTerrain *>(terrain))
     {
-        terrainString = "city";
+        std::cout << "You really just swam through sand instead of walking over it? Whatever floats your boat I guess." << std::endl;
+        return 1;
     }
 
-    std::cout << "You cannot swim in the " << terrainString << " terrain. Please select a different travel mode" << std::endl;
+    std::cout << "There ain't any pools in this city, so unfortunately for you, you can't swim here. Try something else." << std::endl;
     return 0;
 }
