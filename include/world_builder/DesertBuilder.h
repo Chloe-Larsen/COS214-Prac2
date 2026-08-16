@@ -6,12 +6,12 @@
 #include "DesertObstacle.h"
 #include "DesertTerrain.h"
 
-class DesertBuilder : WorldBuilder
+class DesertBuilder : public WorldBuilder
 {
 public:
     Terrain *makeTerrain() override;
     NPC *makeNPC(std::string name) override;
-    Obstacle *makeObstacle(std::string name) override;    
+    Obstacle *makeObstacle(std::string name) override;
 };
 
 #endif

@@ -4,12 +4,6 @@
 #include "../include/world_map/place_features/NpcFeature.h"
 #include "../include/world_map/place_features/ObstacleFeature.h"
 #include "../include/world_map/place_features/TreasureFeature.h"
-#include "../include/world_builder/CityNPC.h"
-#include "../include/world_builder/OceanNPC.h"
-#include "../include/world_builder/DesertNPC.h"
-#include "../include/world_builder/CityObstacle.h"
-#include "../include/world_builder/OceanObstacle.h"
-#include "../include/world_builder/DesertObstacle.h"
 #include "../include/trip/EfficientRoute.h"
 #include "../include/trip/IndecisiveRoute.h"
 #include "../include/trip/ScenicRoute.h"
@@ -17,6 +11,9 @@
 #include "../include/traveller/SkipMode.h"
 #include "../include/traveller/SwimMode.h"
 #include "../include/traveller/FlyMode.h"
+#include "../include/world_builder/CityBuilder.h"
+#include "../include/world_builder/DesertBuilder.h"
+#include "../include/world_builder/OceanBuilder.h"
 
 #include <iostream>
 
@@ -27,27 +24,35 @@ GameManager::GameManager()
 
     trip = new Trip();
 
-    Region *worldRegion = new Region("World", new DesertTerrain());
-    map = new ObstacleFeature(new DesertObstacle("Tumbleweed"), worldRegion);
+    WorldBuilder *cityBuilder = new CityBuilder();
+    WorldBuilder *desertBuilder = new DesertBuilder();
+    WorldBuilder *oceanBuilder = new OceanBuilder();
+
+    Region *worldRegion = new Region("World", desertBuilder->makeTerrain());
+    map = new ObstacleFeature(desertBuilder->makeObstacle("Tumbleweed"), worldRegion);
     Location *worldTradeCenterLocation = new Location("World Trading Center");
     worldRegion->addPlace(new TreasureFeature(30, worldTradeCenterLocation));
 
-    Region *desertRegion = new Region("Vast Desert", new DesertTerrain());
+    Region *desertRegion = new Region("Vast Desert", desertBuilder->makeTerrain());
     worldRegion->addPlace(desertRegion);
-    desertRegion->addPlace(new TreasureFeature(300, new NpcFeature(new DesertNPC("Jayden"), new ObstacleFeature(new DesertObstacle("Cactus"), new Location("Oasis")))));
+    desertRegion->addPlace(new TreasureFeature(300, new NpcFeature(desertBuilder->makeNPC("Jayden"), new ObstacleFeature(desertBuilder->makeObstacle("Cactus"), new Location("Oasis")))));
 
-    Region *cityRegion = new Region("Modern City", new CityTerrain());
-    desertRegion->addPlace(new NpcFeature(new CityNPC("Sketchy Joe"), new ObstacleFeature(new CityObstacle("Traffic Light"), cityRegion)));
+    Region *cityRegion = new Region("Modern City", cityBuilder->makeTerrain());
+    desertRegion->addPlace(new NpcFeature(cityBuilder->makeNPC("Sketchy Joe"), new ObstacleFeature(cityBuilder->makeObstacle("Traffic Light"), cityRegion)));
     cityRegion->addPlace(new Location("Mall"));
     cityRegion->addPlace(new TreasureFeature(100, new Location("Park")));
 
-    Region *waterRegion = new Region("Small Lake", new OceanTerrain());
-    cityRegion->addPlace(new NpcFeature(new OceanNPC("Fisherman Pete"), waterRegion));
+    Region *waterRegion = new Region("Small Lake", oceanBuilder->makeTerrain());
+    cityRegion->addPlace(new NpcFeature(oceanBuilder->makeNPC("Fisherman Pete"), waterRegion));
     waterRegion->addPlace(new TreasureFeature(25, new Location("Warm Water")));
     waterRegion->addPlace(new Location("Cold Water"));
-    waterRegion->addPlace(new ObstacleFeature(new OceanObstacle("Icicle"), new Location("Frozen Water")));
+    waterRegion->addPlace(new ObstacleFeature(oceanBuilder->makeObstacle("Icicle"), new Location("Frozen Water")));
 
     startLocation = worldTradeCenterLocation;
+
+    delete cityBuilder;
+    delete desertBuilder;
+    delete oceanBuilder;
 }
 
 GameManager::~GameManager()

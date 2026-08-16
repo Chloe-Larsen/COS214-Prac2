@@ -6,12 +6,12 @@
 #include "OceanObstacle.h"
 #include "OceanTerrain.h"
 
-class OceanBuilder : WorldBuilder
+class OceanBuilder : public WorldBuilder
 {
 public:
     Terrain *makeTerrain() override;
     NPC *makeNPC(std::string name) override;
-    Obstacle *makeObstacle(std::string name) override;    
+    Obstacle *makeObstacle(std::string name) override;
 };
 
 #endif

@@ -6,7 +6,7 @@
 #include "CityObstacle.h"
 #include "CityTerrain.h"
 
-class CityBuilder : WorldBuilder
+class CityBuilder : public WorldBuilder
 {
 public:
     Terrain *makeTerrain() override;
