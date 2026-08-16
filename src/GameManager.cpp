@@ -99,6 +99,12 @@ void GameManager::doDestinationLoop()
         trip->plan(currentLocation, destinationLocation);
         trip->setCurrentPlaceIndex(0);
 
+        if (trip->getPlaces().size() <= 1)
+        {
+            std::cout << "Something went wrong: The trip has less than 2 places." << std::endl;
+            return;
+        }
+
         doStepLoop();
     }
 }
