@@ -32,7 +32,7 @@ GameManager::GameManager()
     waterRegion->addPlace(new Location("Cold Water"));
     waterRegion->addPlace(new Location("Frozen Water"));
 
-    currentLocation = tradeCenterLocation;
+    startLocation = tradeCenterLocation;
 }
 
 GameManager::~GameManager()
@@ -66,7 +66,7 @@ void GameManager::doDestinationLoop()
             options.push_back(location->getName());
 
         int selectedLocationI = showMenu(
-            {"You are currently at " + currentLocation->getName() + ".",
+            {"You are currently at " + startLocation->getName() + ".",
              "Select where you want to go next:"},
             options);
         destinationLocation = locations[selectedLocationI - 1];
@@ -74,7 +74,7 @@ void GameManager::doDestinationLoop()
         /* Select Route */
 
         int selectedRouteI = showMenu(
-            {"You are currently at " + currentLocation->getName() + " and you are going to " + destinationLocation->getName() + ".",
+            {"You are currently at " + startLocation->getName() + " and you are going to " + destinationLocation->getName() + ".",
              "Select how you would like to get there:"},
             {"Efficiently", "Scenically", "Indecisively"});
         Route *route = nullptr;
@@ -96,7 +96,7 @@ void GameManager::doDestinationLoop()
 
         traveller->setTravelMode(new WalkMode());
         trip->setRoute(route);
-        trip->plan(currentLocation, destinationLocation);
+        trip->plan(startLocation, destinationLocation);
         trip->setCurrentPlaceIndex(0);
 
         if (trip->getPlaces().size() <= 1)
@@ -135,14 +135,58 @@ void GameManager::doStepLoop()
              "Currently " + traveller->getTravelMode()->getName() + " to travel.",
              "What is your next move?"},
             {"Move on",
+             "Chill at current place a bit more"
              "Change travel mode",
              "Interact with environment"});
         std::cout << "User gave: " << selectedOption << std::endl;
+
+        switch (selectedOption)
+        {
+        case 1:
+            // TODO
+            break;
+        case 2:
+            std::cout << "Nice. Hope you enjoyed a little more rest." << std::endl;
+            break;
+        case 3:
+            // TODO
+            break;
+        case 4:
+            doInteractingLoop();
+            break;
+        }
     }
 }
 
 void GameManager::doInteractingLoop()
 {
+    // while (true)
+    // {
+    //     Place *currentPlace = trip->getPlaces()[trip->getCurrentPlaceIndex()]->getCurrentNode();
+    //     Region *currentRegion = nullptr;
+    //     Location *currentLocation = nullptr;
+
+    //     if (Location *v = dynamic_cast<Location *>(currentPlace))
+    //     {
+    //         currentLocation = v;
+    //         currentRegion = v->getParentNode(true);
+    //     }
+    //     else if (Region *v = dynamic_cast<Region *>(currentPlace))
+    //     {
+    //         currentRegion = v;
+    //     }
+
+    //     std::vector<std::string> options = {"Stop searching (go back)"};
+    //     int selectedOption = showMenu(
+    //         {"You are currently " + (currentLocation == nullptr ? "" : "at " + currentLocation->getName()) + " in the " + currentRegion->getName() + " region",
+    //          "| Coins: " + std::to_string(traveller->getCoins()) + " | Feathers: " + std::to_string(traveller->getFlightItems()) + " |",
+    //          "You see a few things around you. What do you do:"},
+    //         options);
+    //     std::cout << "User gave: " << selectedOption << std::endl;
+
+    //     if (selectedOption == 1)
+    //         break; // go back
+    // }
 }
 
 int GameManager::showMenu(std::vector<std::string> text, std::vector<std::string> options)

@@ -12,7 +12,7 @@ private:
     Traveller *traveller;
     Trip *trip;
     Place *map;
-    Location* currentLocation;
+    Location* startLocation;
     Location* destinationLocation;
 
 public:
