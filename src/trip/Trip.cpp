@@ -2,38 +2,42 @@
 
 void Trip::plan(Location *current, Location *destination)
 {
+    places = route->pickPlaces(current, destination);
 }
 
 void Trip::setRoute(Route *route)
 {
+    this->route = route;
 }
 
 Trip::~Trip()
 {
+    if(route != nullptr)
+        delete route;
+
+    for (Place *place : places)
+    {
+        delete place;
+    }
 }
 
 // getter and setters
 Route *Trip::getRoute()
 {
-
+    return route;
 }
 
 std::vector<Place *> Trip::getPlaces()
 {
-
-}
-
-void Trip::setPlaces(std::vector<Place *> places)
-{
-
+    return places;
 }
 
 int Trip::getCurrentPlaceIndex()
 {
-
+    return currentPlacesIndex;
 }
 
 void Trip::setCurrentPlaceIndex(int index)
 {
-
+    this->currentPlacesIndex = index;
 }

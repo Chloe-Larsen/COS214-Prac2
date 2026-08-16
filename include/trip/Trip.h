@@ -10,26 +10,25 @@
 #include "../world_map/Place.h"
 #include "../world_map/Location.h"
 
-class Trip{
+class Trip
+{
 private:
-    Route * route;
+    Route *route;
     std::vector<Place *> places;
     int currentPlacesIndex;
 
 public:
-    void plan(Location* current, Location* destination);
-    void setRoute(Route* route);
+    void plan(Location *current, Location *destination);
+    void setRoute(Route *route);
     ~Trip();
 
-    //getter and setters
-    Route* getRoute();
-    
+    // getter and setters
+    Route *getRoute();
+
     std::vector<Place *> getPlaces();
-    void setPlaces(std::vector<Place*> places);
 
     int getCurrentPlaceIndex();
     void setCurrentPlaceIndex(int index);
 };
-
 
 #endif
