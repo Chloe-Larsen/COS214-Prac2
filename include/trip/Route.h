@@ -9,6 +9,7 @@
 #include "Route.h"
 #include "../world_map/Place.h"
 #include "../world_map/Location.h"
+#include "../world_map/Region.h"
 
 class Route
 {
