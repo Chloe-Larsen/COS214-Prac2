@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Place.h"
+#include "./place_features/PlaceFeature.h"
 #include "../world_builder/Terrain.h"
 
 class Region : public Place
@@ -22,7 +23,7 @@ public:
     Region *getParentNode(bool first = true) override;
     Place *getCurrentNode() override;
     Terrain *getTerrain() override;
-    // TODO: Map<String, Function(): void> getInteractions()
+    std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;
     virtual ~Region();
 };

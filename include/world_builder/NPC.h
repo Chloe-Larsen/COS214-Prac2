@@ -7,9 +7,11 @@ class NPC
 {
 private:
     std::string name;
-    bool sellsFlightItem;
 
 public:
+    NPC(std::string name);
+    virtual std::string getName() final;
+    virtual bool sellsFlightItem() = 0;
     virtual ~NPC();
 };
 

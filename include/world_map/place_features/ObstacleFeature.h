@@ -10,7 +10,8 @@ private:
 
 public:
     ObstacleFeature(Place *place, Obstacle *obstacle);
-    // TODO: Map<String, Function(): void> getInteractions()
+    void handleInteraction(Traveller *traveller) override;
+    std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;
     ~ObstacleFeature();
 };

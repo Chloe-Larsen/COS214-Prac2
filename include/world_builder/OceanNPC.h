@@ -5,6 +5,8 @@
 
 class OceanNPC : public NPC
 {
+public:
+    OceanNPC(std::string name);
 };
 
 #endif

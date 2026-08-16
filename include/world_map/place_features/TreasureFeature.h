@@ -10,7 +10,8 @@ private:
 
 public:
     TreasureFeature(Place *place, int coins);
-    // TODO: Map<String, Function(): void> getInteractions()
+    void handleInteraction(Traveller *traveller) override;
+    std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;
 };
 

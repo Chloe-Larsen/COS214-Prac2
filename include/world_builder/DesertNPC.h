@@ -5,6 +5,8 @@
 
 class DesertNPC : public NPC
 {
+public:
+    DesertNPC(std::string name);
 };
 
 #endif

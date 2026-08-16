@@ -2,6 +2,7 @@
 #define PLACE_FEATURE_H
 
 #include "../Place.h"
+#include "../../traveller/Traveller.h"
 
 class PlaceFeature : public Place
 {
@@ -10,6 +11,7 @@ protected:
 
 public:
     PlaceFeature(Place *place);
+    virtual void handleInteraction(Traveller *traveller) = 0;
     Region *getParentNode(bool first) override;
     Place *getCurrentNode() override;
     Terrain *getTerrain() override;

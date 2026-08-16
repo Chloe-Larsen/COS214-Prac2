@@ -5,6 +5,8 @@
 
 class CityNPC : public NPC
 {
+public:
+    CityNPC(std::string name);
 };
 
 #endif

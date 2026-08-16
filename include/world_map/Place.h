@@ -1,6 +1,7 @@
 #ifndef PLACE_H
 #define PLACE_H
 
+#include <map>
 #include <vector>
 
 #include "../world_builder/Obstacle.h"
@@ -17,7 +18,7 @@ public:
     virtual Place *getCurrentNode() = 0;                  // returns itself if this object is a Location or Region, otherwise gets the closest descendant that is a Location or Region
     virtual Place *getHandle() final;                     // gets this place's topmost decorator
     virtual Terrain *getTerrain() = 0;
-    // TODO: Map<String, Function(): void> getInteractions()
+    virtual std::map<std::string, PlaceFeature *> getInteractions() = 0;
     virtual std::vector<Obstacle *> getObstacles() = 0;
     virtual ~Place();
 };

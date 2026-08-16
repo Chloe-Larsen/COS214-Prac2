@@ -10,8 +10,9 @@ private:
     NPC *npc;
 
 public:
-    NpcFeature(Place* place, NPC *npc);
-    // TODO: Map<String, Function(): void> getInteractions()
+    NpcFeature(Place *place, NPC *npc);
+    void handleInteraction(Traveller *traveller) override;
+    std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;
     ~NpcFeature();
 };

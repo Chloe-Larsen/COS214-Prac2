@@ -43,6 +43,11 @@ Terrain *Region::getTerrain()
     return terrain;
 }
 
+std::map<std::string, VoidFunc> Region::getInteractions()
+{
+    return {};
+}
+
 std::vector<Obstacle *> Region::getObstacles()
 {
     return std::vector<Obstacle *>();

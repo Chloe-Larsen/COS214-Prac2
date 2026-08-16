@@ -5,6 +5,16 @@ ObstacleFeature::ObstacleFeature(Place *place, Obstacle *obstacle) : PlaceFeatur
     this->obstacle = obstacle;
 }
 
+void ObstacleFeature::handleInteraction(Traveller *traveller)
+{
+    throw "Unexpected method call";
+}
+
+std::map<std::string, PlaceFeature *> ObstacleFeature::getInteractions()
+{
+    return place->getInteractions();
+}
+
 std::vector<Obstacle *> ObstacleFeature::getObstacles()
 {
     std::vector<Obstacle *> v = place->getObstacles();

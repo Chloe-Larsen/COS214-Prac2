@@ -16,7 +16,7 @@ public:
     Region *getParentNode(bool first = true) override;
     Place *getCurrentNode() override;
     Terrain *getTerrain() override;
-    // TODO: Map<String, Function(): void> getInteractions()
+    std::map<std::string, PlaceFeature *> getInteractions() override;
     std::vector<Obstacle *> getObstacles() override;
 };
 
