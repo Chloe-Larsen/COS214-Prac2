@@ -1,4 +1,4 @@
-#include "../../include/world_map/place_features/TreasureFeature.h"
+#include "../../../include/world_map/place_features/TreasureFeature.h"
 
 TreasureFeature::TreasureFeature(Place *place, int coins) : PlaceFeature(place)
 {

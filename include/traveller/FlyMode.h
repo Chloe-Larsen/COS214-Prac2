@@ -3,10 +3,11 @@
 
 #include "TravelMode.h"
 
-class FlyMode : public TravelMode{
+class FlyMode : public TravelMode
+{
 public:
-    int handle(Terrain *terrain, Traveller* traveller) override;
+    FlyMode();
+    int handle(Terrain *terrain, Traveller *traveller) override;
 };
-
 
 #endif

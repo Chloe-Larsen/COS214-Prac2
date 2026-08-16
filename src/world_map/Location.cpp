@@ -1,11 +1,17 @@
 #include "../../include/world_map/Location.h"
+#include "../../include/world_map/Region.h"
 
 Location::Location(std::string name)
 {
     this->name = name;
 }
 
-Place *Location::getParentNode(bool first)
+std::string Location::getName()
+{
+    return name;
+}
+
+Region *Location::getParentNode(bool)
 {
     return parent->getParentNode(false);
 }

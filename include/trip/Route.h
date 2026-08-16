@@ -12,8 +12,13 @@
 
 class Route
 {
+private:
+    std::string name;
+
 public:
-    virtual std::vector<Place *> pickPlaces(Location* current, Location* destination)=0;
+    Route(std::string name);
+    virtual std::vector<Place *> pickPlaces(Location *current, Location *destination) = 0;
+    virtual std::string getName() final;
     virtual ~Route();
 };
 

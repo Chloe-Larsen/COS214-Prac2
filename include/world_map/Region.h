@@ -17,11 +17,14 @@ private:
 public:
     Region(std::string name, Terrain *terrain);
     void addPlace(Place *place);
-    Place *getParentNode(bool first = true) override;
+    std::vector<Place *> getPlaces();
+    std::string getName();
+    Region *getParentNode(bool first = true) override;
     Place *getCurrentNode() override;
     Terrain *getTerrain() override;
     // TODO: Map<String, Function(): void> getInteractions()
     std::vector<Obstacle *> getObstacles() override;
+    virtual ~Region();
 };
 
 #endif

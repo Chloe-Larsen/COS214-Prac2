@@ -6,13 +6,29 @@ Region::Region(std::string name, Terrain *terrain)
     this->terrain = terrain;
 }
 
+Region::~Region()
+{
+    for (Place *place : places)
+        delete place;
+}
+
+std::string Region::getName()
+{
+    return name;
+}
+
 void Region::addPlace(Place *place)
 {
     this->places.push_back(place);
     place->parent = this;
 }
 
-Place *Region::getParentNode(bool first)
+std::vector<Place *> Region::getPlaces()
+{
+    return places;
+}
+
+Region *Region::getParentNode(bool first)
 {
     return first ? parent->getParentNode(false) : this;
 }

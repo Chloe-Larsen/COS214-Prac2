@@ -1,5 +1,7 @@
 #include "../../include/traveller/SkipMode.h"
 
+SkipMode::SkipMode() : TravelMode("skipping") {}
+
 int SkipMode::handle(Terrain *terrain, Traveller *traveller)
 {
     if (OceanTerrain *c = dynamic_cast<OceanTerrain *>(terrain))

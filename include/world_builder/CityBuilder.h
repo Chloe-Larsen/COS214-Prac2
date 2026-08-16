@@ -11,7 +11,7 @@ class CityBuilder : WorldBuilder
 public:
     Terrain *makeTerrain() override;
     NPC *makeNPC() override;
-    Obstacle *makeObstacle() override;    
+    Obstacle *makeObstacle() override;
 };
 
 #endif

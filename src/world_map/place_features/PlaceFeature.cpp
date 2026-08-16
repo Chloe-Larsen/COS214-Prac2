@@ -1,4 +1,4 @@
-#include "../../include/world_map/place_features/PlaceFeature.h"
+#include "../../../include/world_map/place_features/PlaceFeature.h"
 
 PlaceFeature::PlaceFeature(Place *place)
 {
@@ -8,7 +8,7 @@ PlaceFeature::PlaceFeature(Place *place)
     place->parent = this;
 }
 
-Place *PlaceFeature::getParentNode(bool first)
+Region *PlaceFeature::getParentNode(bool)
 {
     return parent->getParentNode(false);
 }

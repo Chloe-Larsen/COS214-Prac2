@@ -7,6 +7,8 @@ void Trip::plan(Location *current, Location *destination)
 
 void Trip::setRoute(Route *route)
 {
+    if (this->route != nullptr)
+        delete this->route;
     this->route = route;
 }
 

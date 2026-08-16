@@ -10,7 +10,7 @@ protected:
 
 public:
     PlaceFeature(Place *place);
-    Place *getParentNode(bool first) override;
+    Region *getParentNode(bool first) override;
     Place *getCurrentNode() override;
     Terrain *getTerrain() override;
     ~PlaceFeature();

@@ -8,6 +8,7 @@ class IndecisiveRoute : public Route
 private:
     std::vector<Place *> getEfficientRoute(Location *current, Location *destination);
 public:
+    IndecisiveRoute();
     std::vector<Place *> pickPlaces(Location *current, Location *destination) override;
 };
 

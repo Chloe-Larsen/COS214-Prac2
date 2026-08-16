@@ -11,6 +11,8 @@ void Traveller::move(Trip *trip, Terrain *terrain)
 
 void Traveller::setTravelMode(TravelMode *travelMode)
 {
+    if (this->travelMode != nullptr)
+        delete this->travelMode;
     this->travelMode = travelMode;
 }
 
