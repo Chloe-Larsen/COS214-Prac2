@@ -30,7 +30,7 @@ GameManager::GameManager()
     Region *worldRegion = new Region("World", new DesertTerrain());
     map = new ObstacleFeature(new DesertObstacle("Tumbleweed"), worldRegion);
     Location *worldTradeCenterLocation = new Location("World Trading Center");
-    worldRegion->addPlace(worldTradeCenterLocation);
+    worldRegion->addPlace(new TreasureFeature(30, worldTradeCenterLocation));
 
     Region *desertRegion = new Region("Vast Desert", new DesertTerrain());
     worldRegion->addPlace(desertRegion);
@@ -43,7 +43,7 @@ GameManager::GameManager()
 
     Region *waterRegion = new Region("Small Lake", new OceanTerrain());
     cityRegion->addPlace(new NpcFeature(new OceanNPC("Fisherman Pete"), waterRegion));
-    waterRegion->addPlace(new Location("Warm Water"));
+    waterRegion->addPlace(new TreasureFeature(25, new Location("Warm Water")));
     waterRegion->addPlace(new Location("Cold Water"));
     waterRegion->addPlace(new ObstacleFeature(new OceanObstacle("Icicle"), new Location("Frozen Water")));
 
