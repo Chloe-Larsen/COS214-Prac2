@@ -3,7 +3,7 @@ COS214_Prac2_2026.pdf
 output.txt
 
 # build artifacts
-program
+wayfarer
 *.o
 *.d
 submission.zip

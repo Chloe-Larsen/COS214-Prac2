@@ -1,7 +1,7 @@
 CXX      := g++
 CXXFLAGS := -std=c++11 -Wall -Wextra -Iinclude
 BUILD_DIR:= build
-TARGET   := program
+TARGET   := wayfarer
 ZIP_NAME := project.zip
 FLAT_DIR := flat_src
 
