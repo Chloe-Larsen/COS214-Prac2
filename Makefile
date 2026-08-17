@@ -2,7 +2,7 @@ CXX      := g++
 CXXFLAGS := -std=c++11 -Wall -Wextra -Iinclude
 BUILD_DIR:= build
 TARGET   := wayfarer
-ZIP_NAME := project.zip
+ZIP_NAME := submission.zip
 FLAT_DIR := flat_src
 
 # Find main.cpp and all src/ cpp files
@@ -23,19 +23,21 @@ $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Zip main.cpp and the src/ & include/ folders while preserving their subfolder structure
+# Zip main.cpp, src/, include/, and flatten all files from resources into the root of the zip
 zip:
 	zip -r $(ZIP_NAME) main.cpp src include -i '*.cpp' '*.h' '*.hpp'
+	zip -j $(ZIP_NAME) resources/*
 
-# Generate flat files with auto-patched includes, zip them, and remove temp folder
+# Generate flat files with auto-patched includes, copy resources, zip them, and remove temp folder
 flat-zip:
 	@rm -rf $(FLAT_DIR) $(ZIP_NAME)
 	@mkdir -p $(FLAT_DIR)
-	@# 1. Copy all source/header files into the flat temporary directory
+	@# 1. Copy all source/header files and resources into the flat temporary directory
 	@find . -type f \( -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \) ! -path "./$(BUILD_DIR)/*" ! -path "./$(FLAT_DIR)/*" -exec cp {} $(FLAT_DIR)/ \;
+	@if [ -d resources ]; then cp -r resources/* $(FLAT_DIR)/ 2>/dev/null || true; fi
 	@# 2. Update #include "path/to/file.h" to #include "file.h" using sed
 	@for f in $(FLAT_DIR)/*; do \
-		sed -i -E 's/#include "([^"]*\/)?([^"\/]+)"/#include "\2"/g' "$$f"; \
+		[ -f "$$f" ] && sed -i -E 's/#include "([^"]*\/)?([^"\/]+)"/#include "\2"/g' "$$f"; \
 	done
 	@# 3. Zip all flat files and clean up temporary directory
 	cd $(FLAT_DIR) && zip -j ../$(ZIP_NAME) *
