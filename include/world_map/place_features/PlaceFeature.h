@@ -15,7 +15,7 @@ public:
     Region *getParentNode(bool first) override;
     Place *getCurrentNode() override;
     Terrain *getTerrain() override;
-    ~PlaceFeature();
+    virtual ~PlaceFeature();
 };
 
 #endif

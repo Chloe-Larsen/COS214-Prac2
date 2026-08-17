@@ -10,6 +10,7 @@ Region::~Region()
 {
     for (Place *place : places)
         delete place;
+    delete terrain;
 }
 
 std::string Region::getName()

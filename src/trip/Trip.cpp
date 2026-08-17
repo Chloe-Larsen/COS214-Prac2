@@ -16,11 +16,6 @@ Trip::~Trip()
 {
     if (route != nullptr)
         delete route;
-
-    for (Place *place : places)
-    {
-        delete place;
-    }
 }
 
 // getter and setters

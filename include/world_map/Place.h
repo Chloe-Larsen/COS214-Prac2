@@ -15,6 +15,8 @@ class Place
 public:
     Place *parent; // automatically set when this object gets added to another place
 
+    Place();
+
     virtual Region *getParentNode(bool first = true) = 0; // gets the closest ascendant that is a Region
     virtual Place *getCurrentNode() = 0;                  // returns itself if this object is a Location or Region, otherwise gets the closest descendant that is a Location or Region
     virtual Place *getDecorated() final;                  // gets this place's topmost decorator

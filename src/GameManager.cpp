@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../include/GameManager.h"
 #include "../include/utils.h"
 #include "../include/world_map/Region.h"
@@ -14,8 +16,6 @@
 #include "../include/world_builder/CityBuilder.h"
 #include "../include/world_builder/DesertBuilder.h"
 #include "../include/world_builder/OceanBuilder.h"
-
-#include <iostream>
 
 GameManager::GameManager()
 {
@@ -94,7 +94,7 @@ void GameManager::doDestinationLoop()
         if (selectedLocationI == options.size())
         {
             std::cout << "Thank you for playing! Goodbye!" << std::endl;
-            exit(0);
+            return;
         }
 
         destinationLocation = locations[selectedLocationI - 1];
