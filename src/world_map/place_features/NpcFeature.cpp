@@ -110,5 +110,5 @@ NpcFeature::~NpcFeature()
 
 std::string NpcFeature::toString()
 {
-    return "NpcFeature(npc: " + npc->getName() + ")";
+    return "NpcFeature(npc: " + npc->getName() + ", place: " + place->toString() + ")";
 }

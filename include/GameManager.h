@@ -19,6 +19,7 @@ public:
     void start();
     GameManager();
     ~GameManager();
+    Place* getMap();
 
 private:
     void doDestinationLoop();

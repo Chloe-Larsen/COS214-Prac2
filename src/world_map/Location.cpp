@@ -13,7 +13,7 @@ std::string Location::getName()
 
 Region *Location::getParentNode(bool)
 {
-    return parent->getParentNode(false);
+    return parent == nullptr ? nullptr : parent->getParentNode(false);
 }
 
 Place *Location::getCurrentNode()

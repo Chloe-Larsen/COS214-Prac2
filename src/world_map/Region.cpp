@@ -58,5 +58,12 @@ std::vector<Obstacle *> Region::getObstacles()
 
 std::string Region::toString()
 {
-    return "Region(name: " + name + ")";
+    std::string placesStr = "[";
+
+    for (Place *place : places)
+        placesStr += "\n\t" + place->toString();
+
+    placesStr += "\n]";
+
+    return "Region(name: " + name + ", places: " + placesStr + ")";
 }

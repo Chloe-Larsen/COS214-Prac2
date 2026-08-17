@@ -6,3 +6,4 @@ program
 *.o
 *.d
 submission.zip
+/flag_src

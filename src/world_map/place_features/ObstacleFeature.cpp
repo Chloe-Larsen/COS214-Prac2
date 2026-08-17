@@ -29,5 +29,5 @@ ObstacleFeature::~ObstacleFeature()
 
 std::string ObstacleFeature::toString()
 {
-    return "ObstacleFeature()";
+    return "ObstacleFeature(place: " + place->toString() + ")";
 }

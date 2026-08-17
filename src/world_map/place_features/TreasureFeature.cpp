@@ -34,5 +34,5 @@ std::vector<Obstacle *> TreasureFeature::getObstacles()
 
 std::string TreasureFeature::toString()
 {
-    return "TreasureFeature(coins: " + std::to_string(coins) + ")";
+    return "TreasureFeature(coins: " + std::to_string(coins) + ", place: " + place->toString() + ")";
 }

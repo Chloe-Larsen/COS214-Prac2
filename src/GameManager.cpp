@@ -310,3 +310,8 @@ std::vector<Location *> GameManager::getLocations(Place *place)
 
     return locations;
 }
+
+Place *GameManager::getMap()
+{
+    return map;
+}
